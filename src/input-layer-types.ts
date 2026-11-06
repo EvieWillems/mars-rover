@@ -22,3 +22,21 @@ export interface InstructionPair {
     landing: Position
     instructionLine: Instruction[]
 }
+
+export function isValidPosition(candidate:any):candidate is Position {
+    const candKeys = []
+    if (Object.keys(candidate).length > 0) {
+        for (const k of Object.keys(candidate)) {
+            candKeys.push(k);
+            console.log(candKeys)
+        };
+    };
+    if (candKeys.includes('x') && candKeys.includes('y') && candKeys.includes('heading')) {
+        if (Number.isInteger(parseInt(candidate.x)) && Number.isInteger(parseInt(candidate.y))) {
+            if (HEADINGS.includes(candidate.heading.toUpperCase())) {
+                return true;
+            };
+        };
+    };
+    return false;
+}
