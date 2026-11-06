@@ -39,13 +39,13 @@ export class Rover {
             this.position.y
         ]
         if (this.position.heading === 'N') {
-            newPos[0] += 1;
+            newPos[1] += 1;
         } else if (this.position.heading === 'S') {
             newPos[1] -= 1;
         } else if (this.position.heading === 'E') {
-            newPos[1] -= 1;
+            newPos[0] -= 1;
         } else if (this.position.heading === 'W') {
-            newPos[1] += 1;
+            newPos[0] += 1;
         };
         this.position = newPosition(newPos[0],newPos[1],this.position.heading);
     }
