@@ -1,5 +1,6 @@
 import type { InstructionPair, Instruction, Heading } from './input-layer-types'
 import { INSTRUCTIONS,HEADINGS } from './input-layer-types'
+import { parseInstructionPair } from './parse-input'
 
 const readline = require('node:readline');
 
@@ -18,9 +19,9 @@ export async function getUserInput(): Promise<InstructionPair[]> {
                     if (input && input != 'Q') {
                         currentInstructs.push(input.toString());
                         try {
-                            instructsArr.push(compileInstructions(currentInstructs))
+                            instructsArr.push(parseInstructionPair(currentInstructs))
                         } catch {
-                            console.error("Invalid instructions")
+                            console.error(`Invalid instructions: ${currentInstructs}`)
                         }
                     }
                 }
@@ -32,17 +33,17 @@ export async function getUserInput(): Promise<InstructionPair[]> {
     return instructsArr; // Should actually be quit
 }
 
-export function compileInstructions(candidateInstructs:any[]): InstructionPair {
-    try {
-        const instructsOut: InstructionPair = {
-            landing: candidateInstructs[0],
-            instructionLine: candidateInstructs[1] 
-        };
-        return instructsOut;
-    } catch {
-        throw Error;
-    }
-};
+// export function compileInstructions(candidateInstructs:any[]): InstructionPair {
+//     try {
+//         const instructsOut: InstructionPair = {
+//             landing: candidateInstructs[0],
+//             instructionLine: candidateInstructs[1] 
+//         };
+//         return instructsOut;
+//     } catch {
+//         throw Error;
+//     }
+// };
 
 export async function promptUser(message:string): Promise<string|null> {
     const rl = readline.createInterface({

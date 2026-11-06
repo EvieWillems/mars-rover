@@ -1,21 +1,21 @@
 
-export const INSTRUCTIONS = ['L','R','M']
+export const INSTRUCTIONS = ['L','R','M'] as const;
 
-export const HEADINGS = ['N','S','E','W']
+export const HEADINGS = ['N','S','E','W'] as const;
 
 export type Instruction = (typeof INSTRUCTIONS)[number]
 
 export type Heading = (typeof HEADINGS)[number]
 
 export interface Position {
-    readonly x: number,
-    readonly y: number,
-    readonly heading: Heading
+    x: number,
+    y: number,
+    heading: Heading
 }
 
 export interface PlateauBoundary {
-    readonly x: number,
-    readonly y: number
+    x: number,
+    y: number
 }
 
 export interface InstructionPair {
