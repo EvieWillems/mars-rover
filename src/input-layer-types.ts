@@ -1,7 +1,7 @@
 
 export const INSTRUCTIONS = ['L','R','M'] as const;
 
-export const HEADINGS = ['N','S','E','W'] as const;
+export const HEADINGS = ['N','E','S','W'] as const;
 
 export type Instruction = (typeof INSTRUCTIONS)[number]
 
