@@ -18,3 +18,7 @@ export interface PlateauBoundary {
     readonly y: number
 }
 
+export interface InstructionPair {
+    landing: Position
+    instructionLine: Instruction[]
+}
