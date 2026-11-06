@@ -1,5 +1,5 @@
 import type { Heading, Instruction, Position } from './input-layer-types'
-import { HEADINGS, isValidPosition } from './input-layer-types'
+import { HEADINGS, isValidPosition, newPosition } from './input-layer-types'
 
 
 export class Rover {
@@ -29,17 +29,25 @@ export class Rover {
         } else {
             throw('Error: Invalid direction')
         };
-        let newHeading: Heading = HEADINGS[(HEADINGS.indexOf(this.position.heading)+dirAdjust)%4]
-        let newPosition: Position = {
-            x: this.position.x,
-            y: this.position.y,
-            heading: newHeading
-        }
-        if (isValidPosition(newPosition)) {
-            this.position = newPosition;
-        }
+        let newHeading: Heading = HEADINGS[(HEADINGS.indexOf(this.position.heading)+dirAdjust)%4];
+        this.position = newPosition(this.position.x,this.position.y,newHeading);
     }
 
-    // executeSingleInstruction
+    moveForward():void {
+        let newPos: number[] = [
+            this.position.x,
+            this.position.y
+        ]
+        if (this.position.heading === 'N') {
+            newPos[0] += 1;
+        } else if (this.position.heading === 'S') {
+            newPos[1] -= 1;
+        } else if (this.position.heading === 'E') {
+            newPos[1] -= 1;
+        } else if (this.position.heading === 'W') {
+            newPos[1] += 1;
+        };
+        this.position = newPosition(newPos[0],newPos[1],this.position.heading);
+    }
 
 }

@@ -40,3 +40,15 @@ export function isValidPosition(candidate:any):candidate is Position {
     };
     return false;
 }
+
+export function newPosition(x:number,y:number,heading:Heading): Position {
+    let newPos: Position = {
+        x: x,
+        y: y,
+        heading: heading
+    };
+    if (isValidPosition(newPos)) {
+        return newPos;
+    };
+    throw('Error: Invalid position');
+}
